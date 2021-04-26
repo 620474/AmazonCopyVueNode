@@ -9,6 +9,8 @@ dotenv.config()
 const User = require('./models/user')
 
 
+
+
 const app = express();
 
 mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true}, (err) => {
@@ -22,6 +24,12 @@ mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopolog
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+
+//Routers
+const productRouter = require('./routes/product')
+
+app.use("/api", productRouter);
 
 
 app.get("/", (req, res) => {

@@ -29,10 +29,12 @@ app.use(bodyParser.urlencoded({extended: false}))
 //Routers
 const productRouter = require('./routes/product')
 const categoryRouter = require('./routes/category')
+const ownerRouter = require('./routes/owner')
 
 
 app.use("/api", productRouter);
 app.use("/api", categoryRouter);
+app.use("/api", ownerRouter);
 
 
 app.get("/", (req, res) => {

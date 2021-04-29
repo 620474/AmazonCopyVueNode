@@ -86,15 +86,13 @@
 
 <script>
 export default {
-  name: "product",
+  name: "index",
   async asyncData({$axios}) {
     try {
       let categories = $axios.$get('http://localhost:8080/api/categories')
       let owners = $axios.$get('http://localhost:8080/api/owners')
-
       const [catResponse, ownerResponse] = await Promise.all([categories, owners])
 
-      console.log(catResponse);
       return {
         categories: catResponse.categories,
         owners: ownerResponse.owners
@@ -130,7 +128,6 @@ export default {
       data.append("categoryID", this.categoryID);
       data.append("stockQuantity", this.stockQuantity);
       data.append("photo", this.selectedFile, this.selectedFile.name);
-
       let result = await this.$axios.$post('http://localhost:8080/api/products', data);
       this.$router.push('/');
     }

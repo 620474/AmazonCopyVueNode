@@ -9,6 +9,9 @@ const upload = require('../middlewares/upload-photo')
 router.post('/products', upload.single("photo"), async (req, res) => {
     try {
         let product = new Product();
+        product.ownerID = req.body.ownerID;
+        product.categoryID = req.body.categoryID;
+        product.price = req.body.price;
         product.title = req.body.title;
         product.description = req.body.description;
         product.photo = req.file.location;
@@ -58,7 +61,7 @@ router.get('/products/:id', async (req, res) => {
 router.put("/products/:id", upload.single("photo"), async (req, res) => {
     try {
         let product = await Product.findOneAndUpdate(
-            { _id: req.params.id },
+            {_id: req.params.id},
             {
                 $set: {
                     title: req.body.title,
@@ -70,7 +73,7 @@ router.put("/products/:id", upload.single("photo"), async (req, res) => {
                     owner: req.body.ownerID
                 }
             },
-            { upsert: true }
+            {upsert: true}
         );
 
         res.json({
@@ -89,13 +92,12 @@ router.delete('/products/:id', async (req, res) => {
     try {
         let product = await Product.findOneAndDelete({_id: req.params.id});
 
-        if(product) {
+        if (product) {
             res.json({
                 success: true,
                 message: "product successfully deleted"
             })
-        }
-        else {
+        } else {
             res.json({
                 success: false,
                 message: "Product exist"

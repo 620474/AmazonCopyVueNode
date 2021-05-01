@@ -30,11 +30,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 const productRouter = require('./routes/product')
 const categoryRouter = require('./routes/category')
 const ownerRouter = require('./routes/owner')
+const authRouter = require('./routes/auth')
 
 
 app.use("/api", productRouter);
 app.use("/api", categoryRouter);
 app.use("/api", ownerRouter);
+app.use("/api", authRouter);
 
 
 app.get("/", (req, res) => {

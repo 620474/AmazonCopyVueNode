@@ -73,7 +73,6 @@ router.post('/auth/login', async (req, res) => {
                 })
             }
         }
-
     } catch (err) {
         res.status(500).json({
             success: false,

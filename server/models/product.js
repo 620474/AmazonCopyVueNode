@@ -3,14 +3,14 @@ const Schema = mongoose.Schema;
 
 
 const ProductSchema = new Schema({
-    category: { type: Schema.Types.ObjectId, ref: "Category" },
-    owner: { type: Schema.Types.ObjectId, ref: "Owner" },
+    category: {type: Schema.Types.ObjectId, ref: "Category"},
+    owner: {type: Schema.Types.ObjectId, ref: "Owner"},
     title: String,
     description: String,
     photo: String,
     price: Number,
     stockQuantity: Number,
-    rating: [Number]
+    rating: [{type: Schema.Types.ObjectId, ref: "Review"}]
 });
 
 let Product = mongoose.model('Product', ProductSchema);

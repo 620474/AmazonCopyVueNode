@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hr />
+    <hr/>
     <div class="reviewsMedley">
       <div class="row">
         <div class="col-lg-4 col-md-5 col-sm-12">
@@ -140,7 +140,7 @@
           </div>
           <div class="clearfix">
             <div class="float-left">
-              <hr class="a-spacing-large" />
+              <hr class="a-spacing-large"/>
             </div>
           </div>
           <h3 class="a-spacing-micro">Review this product</h3>
@@ -149,13 +149,13 @@
             <!-- Link to another Review page -->
             <span class="a-button-base writeReviewButton cm-cr-button-wide">
               <span class="a-button-inner">
-                <a href="#" class="a-button-text">Write a customer review</a>
+                <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text" role="button">Write a customer review</nuxt-link>
               </span>
             </span>
           </div>
           <div class="clearfix">
             <div class="float-left">
-              <hr class="mt-4 a-spacing-large" />
+              <hr class="mt-4 a-spacing-large"/>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@
             <h3>Customer images</h3>
             <!-- Review Images -->
             <div class="a-spacing-small a-spacing-top-small">
-              <img class="img-fluid" width="22.5%" />
+              <img class="img-fluid" width="22.5%" v-for="review in reviews" :key="review._id" :src="review.photo"/>
             </div>
             <div>
               <a href="#">See all customer images</a>
@@ -188,7 +188,7 @@
                   <span class="cr-lighthouse-term">brad stone</span>
                 </a>
               </span>
-              <br />
+              <br/>
               <span class="cr-lighthouse-span">
                 <a href="#">
                   <span class="cr-lighthouse-term">steve jobs</span>
@@ -204,7 +204,7 @@
                   <span class="cr-lighthouse-term">great read</span>
                 </a>
               </span>
-              <br />
+              <br/>
               <span class="cr-lighthouse-span">
                 <a href="#">
                   <span class="cr-lighthouse-term">must read</span>
@@ -220,7 +220,7 @@
                   <span class="cr-lighthouse-term">highly recomended</span>
                 </a>
               </span>
-              <br />
+              <br/>
               <span class="cr-lighthouse-span">
                 <a href="#">
                   <span class="cr-lighthouse-term">well searched</span>
@@ -247,7 +247,7 @@
             <div class="card-padding">
               <div class="review-header">
                 <h3>
-                  <span class="a-size-base">Showing 1-8 of 1,354 reviews</span>
+                  <span class="a-size-base">Showing 1-8 of {{ product.rating.length }} reviews</span>
                 </h3>
               </div>
               <div class="review-sort-type">
@@ -264,7 +264,7 @@
               </div>
 
               <!-- Reviews -->
-              <div class="review-body">
+              <div class="review-body" v-for="review in reviews" :key="review._id">
                 <div class="genome-widget">
                   <a href="#">
                     <div class="profile-avatar">
@@ -274,18 +274,18 @@
                     </div>
                     <!-- Review Owner -->
                     <div class="profile-content">
-                      <span class="a-profile-name">Review Owner</span>
+                      <span class="a-profile-name">{{ review.user.name }}</span>
                     </div>
                   </a>
                 </div>
                 <div class="a-row">
                   <!-- Review Star -->
                   <a href="#">
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star" v-for="i in review.rating" :key="i"></i>
                   </a>
                   <span class="a-letter-space"></span>
                   <!-- Review Headline -->
-                  <a href="#" class="review-title">Review Headline</a>
+                  <a href="#" class="review-title">{{ review.headline }}</a>
                 </div>
                 <span class="review-date">June 28, 2016</span>
                 <div class="review-data">
@@ -297,7 +297,7 @@
                 </div>
                 <!-- Review Body -->
                 <div class="review-body">
-                  <span>Review Body</span>
+                  <span>{{ review.body }}</span>
                 </div>
                 <div class="review-comments">
                   <div class="a-spacing-small">
@@ -321,7 +321,7 @@
             <div class="a-row">
               <span class="a-button a-button-base writeReviewButton" id="a-autoid-15">
                 <span class="a-button-inner">
-                  <a href="#" class="a-button-text" role="button">Write a customer review</a>
+                  <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text" role="button">Write a customer review</nuxt-link>
                 </span>
               </span>
             </div>
@@ -335,6 +335,7 @@
 
 <script>
 export default {
-  name: "ReviewSection"
+  name: "ReviewSection",
+  props: ["product", "reviews"]
 };
 </script>

@@ -33,6 +33,7 @@ const ownerRouter = require('./routes/owner')
 const authRouter = require('./routes/auth')
 const reviewRouter = require('./routes/review')
 const addressRouter = require('./routes/address')
+const paymentRouter = require('./routes/payment')
 
 app.use("/api", productRouter);
 app.use("/api", categoryRouter);
@@ -40,7 +41,7 @@ app.use("/api", ownerRouter);
 app.use("/api", authRouter);
 app.use("/api", reviewRouter);
 app.use("/api", addressRouter);
-
+app.use("/api", paymentRouter);
 
 
 

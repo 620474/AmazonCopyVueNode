@@ -70,7 +70,7 @@ router.post("/payment", verifyToken, (req, res) => {
 
             res.json({
                 success: true,
-                message: "Payement éfféctué avec succés"
+                message: "Payment Success"
             });
         })
         .catch(error => {

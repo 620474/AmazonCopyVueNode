@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const mongooseAlgolia = require('mongoose-algolia')
 
 
 const ProductSchema = new Schema({
@@ -25,7 +26,23 @@ ProductSchema.virtual('averageRating').get(function () {
     }
     return 0;
 })
+ProductSchema.plugin(mongooseAlgolia, {
+    appId: process.env.ALGOLIA_APP_ID,
+    apiKey: process.env.ALGOLIA_SECRET,
+    indexName: process.env.ALGOLIA_INDEX,
+    selector: "title _id photo description price rating averageRating owner",
+    populate: {
+        path: "owner",
+        select: "name"
+    },
+    debug: true
+})
+
 
 let Product = mongoose.model('Product', ProductSchema);
+Product.SyncToAlgolia();
+Product.SetAlgoliaSettings({
+    searchableAttributes: ['title']
+});
 
 module.exports = Product;

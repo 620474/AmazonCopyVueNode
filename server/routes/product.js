@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Product = require('../models/product');
 
 
+
 //Upload Photo
 const upload = require('../middlewares/upload-photo')
 

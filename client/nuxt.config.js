@@ -26,7 +26,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{src: "~/plugins/localStorage.js", ssr: false}],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -58,7 +58,7 @@ export default {
     }
   },
   proxy: {
-    "/api" : URL
+    "/api": URL
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -66,7 +66,7 @@ export default {
   auth: {
     strategies: {
       local: {
-        endpoints:{
+        endpoints: {
           login: {
             propertyName: "token"
           },

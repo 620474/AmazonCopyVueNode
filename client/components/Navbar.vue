@@ -8,7 +8,8 @@
             <div class="logo-area">
               <nuxt-link to="/">
                 <img src="/img/logo.png" alt="logo" class="img-fluid">
-              </nuxt-link>>
+              </nuxt-link>
+              >
             </div>
           </div>
           <!-- Search bar-->
@@ -26,7 +27,7 @@
                 <div class="nav-sprite" id="nav-packard-glow-loc-icon"></div>
                 <div id="glow-ingress-block">
                   <span class="nav-line-2" id="glow-ingress-line1">Deliver to</span>
-                  <span class="nav-line-2" id="glow-ingress-line2">{{$auth.$state.user.address.country}}</span>
+                  <span class="nav-line-2" id="glow-ingress-line2">{{ $auth.$state.user.address.country }}</span>
                 </div>
               </nuxt-link>
             </div>
@@ -96,7 +97,7 @@
                 <span aria-hidden="true" class="nav-line-1"></span>
                 <span aria-hidden="true" class="nav-line-2">Cart</span>
                 <span class="nav-cart-icon nav-sprite"></span>
-                <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0">0</span>
+                <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0">{{getCartLength}}</span>
               </nuxt-link>
             </div>
           </div>
@@ -110,11 +111,20 @@
 
 <script>
 import Search from "~/components/Search";
+import {mapGetters} from 'vuex'
 
 export default {
   name: "Navbar",
   components: {
     Search
+  },
+  data() {
+    return {
+      name: '',
+    }
+  },
+  computed: {
+    ...mapGetters(["getCartLength"])
   }
 }
 </script>

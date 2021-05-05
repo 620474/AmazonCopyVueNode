@@ -252,7 +252,7 @@
                 </div>
 
                 <div class="a-section">
-                  <div class="a-button-stack">
+                  <div class="a-button-stack" @click="addProductToCart(product)">
                     <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-cart"></i>
@@ -358,6 +358,7 @@
 <script>
 import ReviewSection from "~/components/ReviewSection";
 import StarRating from "vue-star-rating"
+import {mapActions} from "vuex"
 
 export default {
   components: {
@@ -379,6 +380,10 @@ export default {
     } catch (err) {
       console.error(err);
     }
+  },
+  methods: {
+    ...mapActions(["addProductToCart"])
+
   }
 }
 </script>
